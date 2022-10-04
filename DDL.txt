@@ -1,0 +1,30 @@
+-- account.ACUSER definition
+
+CREATE TABLE `ACUSER` (
+  `user_number` int NOT NULL AUTO_INCREMENT COMMENT '식별번호',
+  `user_id` varchar(100) NOT NULL COMMENT '아이디',
+  `user_password` varchar(100) NOT NULL COMMENT '비밀번호',
+  `user_name` varchar(100) NOT NULL COMMENT '이름',
+  `user_auth` varchar(100) NOT NULL COMMENT '권한',
+  `created_date` datetime DEFAULT NULL COMMENT '계정 생성 날짜',
+  `last_login_date` datetime DEFAULT NULL,
+  PRIMARY KEY (`user_number`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+
+-- account.board definition
+
+CREATE TABLE `board` (
+  `bno` int NOT NULL AUTO_INCREMENT,
+  `subject` varchar(100) DEFAULT NULL,
+  `content` varchar(100) DEFAULT NULL,
+  `reg_date` date DEFAULT NULL,
+  `user_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '아이디',
+  `use_date` varchar(100) DEFAULT NULL,
+  `amount` double DEFAULT NULL,
+  `typea` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `sts` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `mod_date` date DEFAULT NULL,
+  PRIMARY KEY (`bno`)
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
