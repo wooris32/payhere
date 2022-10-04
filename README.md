@@ -1,2 +1,1 @@
-# payhere
-payhere 가계부만들기
+# payhere 가계부만들기
