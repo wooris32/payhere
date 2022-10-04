@@ -23,18 +23,26 @@
         <div class="container">
             <div>
                 <h2>상세</h2>
-                <form action="/insertProc" method="post">
+                <form method="post">
                     <div>
-                        <label>제목</label>
-                        <input type="text" readonly name="subject" th:value="${detail.subject}">
+                        <label>날짜</label>
+                        <input type="text" name="useDate" readonly th:value="${detail.useDate}" placeholder="YYYYMMDD">
                     </div>
                     <div>
-                        <label>작성자</label>
-                        <input type="text" readonly name="writer" th:value="${detail.writer}">
+                        <label>Type</label>
+                        <input type="text" name="typea" readonly th:value="${detail.typea}">
+                    </div>
+                    <div>
+                        <label>금액 </label>
+                        <input type="number" readonly th:value="${detail.amount}" name="amount">
                     </div>
                     <div>
                         <label>내용</label>
-                        <textarea name="content" readonly th:value="${detail.content}" rows="3"></textarea>
+                        <input type="text" readonly name="subject" th:value="${detail.subject}">
+                    </div>
+                    <div>
+                        <label>상세</label>
+                        <textarea name="content" readonly th:text="${detail.content}" rows="5"></textarea>
                     </div>
                 </form>
             </div>

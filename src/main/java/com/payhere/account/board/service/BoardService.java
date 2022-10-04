@@ -1,7 +1,12 @@
 package com.payhere.account.board.service;
 
+import java.util.Collection;
 import java.util.List;
 import javax.annotation.Resource;
+
+import lombok.Data;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import com.payhere.account.board.domain.BoardVO;
 import com.payhere.account.board.mapper.BoardMapper;
@@ -10,8 +15,8 @@ import com.payhere.account.board.mapper.BoardMapper;
 public class BoardService {
     @Resource(name="com.payhere.account.board.mapper.BoardMapper")
     BoardMapper mBoardMapper;
-    public List<BoardVO> boardListService(String userId) throws Exception{
-        return mBoardMapper.boardList(userId);
+    public List<BoardVO> boardListService(String userId,boolean control_flag) throws Exception{
+        return mBoardMapper.boardList(userId,control_flag);
     }
 
     public BoardVO boardDetailService(int bno) throws Exception{
@@ -26,7 +31,8 @@ public class BoardService {
         return mBoardMapper.boardUpdate(board);
     }
 
-    public int boardDeleteService(int bno) throws Exception{
-        return mBoardMapper.boardDelete(bno);
+    public int boardDeleteService(BoardVO board) throws Exception{
+        return mBoardMapper.boardDelete(board);
     }
+
 }

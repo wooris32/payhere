@@ -7,15 +7,29 @@
       SELECT COUNT(*)
        FROM BOARD
       WHERE USER_ID = #{userId}
-        AND STS IN ('C','U')
+        <choose>
+            <when test="control_flag.equals(true)">
+            AND sts IN ('C','U')
+            </when>
+            <otherwise>
+            and 1=1
+            </otherwise>
+        </choose>
     </select>
 
     <select id="boardList" resultType="com.payhere.account.board.domain.BoardVO">  
         SELECT * 
          FROM BOARD
         WHERE USER_ID = #{userId}
-
-
+        <choose>
+            <when test="control_flag.equals(true)">
+                AND sts IN ('C','U')
+            </when>
+            <otherwise>
+                and 1=1
+            </otherwise>
+        </choose>
+        ORDER bY USE_DATE
     </select>        
   
     <select id="boardDetail" parameterType="int" resultType="com.payhere.account.board.domain.BoardVO"> 
@@ -27,26 +41,36 @@
       
     <insert id="boardInsert" parameterType="com.payhere.account.board.domain.BoardVO">        
       INSERT 
-       INTO BOARD (SUBJECT,typea,amount,REG_DATE)
-      VALUES(#{subject},#{typea},#{amount},now())
+       INTO BOARD (SUBJECT,typea,amount,user_id,REG_DATE,content,sts,use_date)
+      VALUES(#{subject},#{typea},#{amount},#{userId},now(),#{content},#{sts},#{useDate})
     </insert>        
   
     <update id="boardUpdate" parameterType="com.payhere.account.board.domain.BoardVO">        
       UPDATE BOARD            
-        SET 
+        SET STS = #{sts}
+        <if test="useDate != null">
+            ,USE_DATE = #{useDate}
+        </if>
+        <if test="typea != null">
+            , TYPEA= #{typea}
+        </if>
+        <if test="amount != null">
+            , amount= #{amount}
+        </if>
         <if test="subject != null">
-         SUBJECT = #{subject}        
+         , SUBJECT = #{subject}
         </if>
-        <if test="subject != null and content != null">,</if> 
-        <if test="content != null">
-         CONTENT = #{content}        
+        <if test="content != null and content != null">
+        ,   CONTENT = #{content}
         </if>
+        , MOD_DATE = now()
        WHERE BNO = #{bno}
     </update>
 
-    <delete id="boardDelete" parameterType="int">
-        DELETE
-         FROM BOARD
+    <delete id="boardDelete" parameterType="com.payhere.account.board.domain.BoardVO">
+       UPDATE BOARD
+         SET STS = #{sts}
+            ,mod_date = now()
         WHERE BNO = #{bno}
     </delete>
     </mapper>

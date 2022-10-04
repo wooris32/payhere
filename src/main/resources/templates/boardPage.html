@@ -33,11 +33,11 @@
         <thead>
         <tr>
             <th scope="col">날짜</th>
-            <th scope="col">Type</th>
+            <th scope="col">분류</th>
             <th scope="col">금액</th>
             <th scope="col">내용</th>
-            <th scope="col">상태</th>
-            <th scope="col">ID</th>
+            <th scope="col">상태(개발용)</th>
+            <th scope="col">ID(개발용)</th>
         </tr>
         </thead>
         <tbody>
@@ -82,10 +82,17 @@
 
 <div style="margin:15px auto;">
     <form action ="/insert" method="post">
-        <button type="submit">내용추가</button>
+        <button type="submit" th:hidden="${!flag}">내용추가</button>
     </form>
-    <form action ="/" method="post">
-        <button type="submit">히스토리보기</button>
+    <form action ="/history" method="post">
+        <button type="submit" th:hidden="${!flag}">
+            히스토리 목록 보기
+        </button>
+    </form>
+    <form action ="/list" method="post">
+        <button type="submit" th:hidden="${flag}">
+            목록
+        </button>
     </form>
 </div>
 

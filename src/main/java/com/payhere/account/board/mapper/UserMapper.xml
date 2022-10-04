@@ -7,9 +7,9 @@
     <insert id="registerAction" parameterType="com.payhere.account.board.domain.UserVO">
         INSERT
           INTO ACUSER
-            (user_number, user_id, user_password, user_name, user_auth, created_date)
+            (user_id, user_password, user_name, user_auth, created_date)
        VALUES
-            (#{userNumber},#{userId},#{userPassword},#{userName},#{userAuth},#{createdDate})
+            (#{userId},#{userPassword},#{userName},#{userAuth},#{createdDate})
     </insert>
 
     <select id="loginAction" resultType="com.payhere.account.board.domain.UserVO">

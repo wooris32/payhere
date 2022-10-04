@@ -10,12 +10,18 @@ import java.util.Collections;
 
 @Data
 public class UserVO implements UserDetails {
-    private int userNumber; // 사용자 식별번호ˆ
+    private int userNumber; // 사용자 식별번호
     private String userId; // 사용자 ID
     private String userPassword; // 사용자 PASSWORD
     private String userName; // 사용자 이름
     private String userAuth; // 사용자의 권한
     private String createdDate; // 계정이 생성된 날짜
+    private String lastLoginDate;
+
+    // DTO에서의 userName.
+    public String getUserName2(){
+        return this.userName;
+    }
 
     // 사용자의 권한을 Collection 형태로 반환한다.
     @Override
@@ -34,11 +40,6 @@ public class UserVO implements UserDetails {
     @Override
     public String getUsername() {
         return this.userId;
-    }
-
-    // DTO에서의 userName.
-    public String getUserName2(){
-        return this.userName;
     }
 
     // 계정의 만료 여부를 확인한다.
