@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="<http://www.thymeleaf.org>">
+
+<head>
+    <title>board</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"></link>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<style>
+    body{
+        text-align: center;
+    }
+</style>
+<body>
+<div class="container">
+    <h2><div th:text="${info}"></div></h2>
+    <form action ="/logout_action" method="post">
+        <button type="submit">LOGOUT</button>
+    </form>
+</div>
+
+<div class="container">
+    <h2>가계부 List</h2>
+    <table class="board_list">
+        <colgroup>
+            <col width="15%"/>
+            <col width="15%"/>
+            <col width="15%"/>
+            <col width="*"/>
+            <col width="15%"/>
+            <col width="15%"/>
+        </colgroup>
+        <thead>
+        <tr>
+            <th scope="col">날짜</th>
+            <th scope="col">Type</th>
+            <th scope="col">금액</th>
+            <th scope="col">내용</th>
+            <th scope="col">상태</th>
+            <th scope="col">ID</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${#lists.size(list)} > 0" th:each="list : ${list}">
+            <td>
+            <a th:href="@{/detail/{itemId}(itemId=${list.bno})}"
+               th:text="${list.useDate}"></a>
+            </td>
+
+            <td>
+            <a th:href="@{/detail/{itemId}(itemId=${list.bno})}"
+               th:text="${list.typea}"></a>
+            </td>
+
+            <td>
+            <a th:href="@{/detail/{itemId}(itemId=${list.bno})}"
+               th:text="${list.amount}"></a>
+            </td>
+
+            <td>
+            <a th:href="@{/detail/{itemId}(itemId=${list.bno})}"
+               th:text="${list.subject}"></a>
+            </td>
+
+            <td>
+            <a th:href="@{/detail/{itemId}(itemId=${list.bno})}"
+               th:text="${list.sts}"></a>
+            </td>
+
+            <td>
+            <a th:href="@{/detail/{itemId}(itemId=${list.bno})}"
+               th:text="${list.bno}"></a>
+            </td>
+
+        </tr>
+        <tr th:unless="${#lists.size(list)} > 0">
+            <td colspan="4">조회된 결과가 없습니다.</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div style="margin:15px auto;">
+    <form action ="/insert" method="post">
+        <button type="submit">내용추가</button>
+    </form>
+    <form action ="/" method="post">
+        <button type="submit">히스토리보기</button>
+    </form>
+</div>
+
+
+</body>
+
+<script th:inline="javascript">
+    function findId(variable) {
+        location.href = '/detail/${variable}';
+    }
+</script>
+</html>

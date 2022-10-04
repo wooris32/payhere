@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="<http://www.thymeleaf.org>">
+<head>
+    <title>board</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"></link>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body>
+
+<div class="container">
+    <div>
+        <h2>추가</h2>
+        <form action="/insertProc" method="post">
+            <div>
+                <label>사용날짜</label>
+                <input type="text" name="uesDate" placeholder="사용날짜 YYYYMMDD">
+            </div>
+            <div>
+                <label>Type</label>
+                <input type="text" name="type" placeholder="타입 +/ - ">
+            </div>
+            <div>
+                <label>금액 </label>
+                <input type="text" name="amount" placeholder="금액 ">
+            </div>
+            <div>
+                <label>내용</label>
+                <input type="text" name="subject" placeholder="제목을 입력하세요.">
+            </div>
+            <div>
+                <label>상세</label>
+                <textarea name="content" rows="3"></textarea>
+            </div>
+            <button type="submit">작성</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>
+</layoutTag:layout>

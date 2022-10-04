@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="<http://www.thymeleaf.org>">
+
+<head>
+    <title>board</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"></link>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<style>
+    body{
+        text-align: center;
+    }
+</style>
+<body>
+
+<div class="container">
+    <div>
+        <label style="font-size:20px;"><span></span>상세</label>
+    </div>
+
+    <div class="col-xs-12">
+
+        <div class="container">
+            <div>
+                <h2>상세</h2>
+                <form action="/insertProc" method="post">
+                    <div>
+                        <label>제목</label>
+                        <input type="text" readonly name="subject" th:value="${detail.subject}">
+                    </div>
+                    <div>
+                        <label>작성자</label>
+                        <input type="text" readonly name="writer" th:value="${detail.writer}">
+                    </div>
+                    <div>
+                        <label>내용</label>
+                        <textarea name="content" readonly th:value="${detail.content}" rows="3"></textarea>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+        <div class="btn-group btn-group-sm" role="group" style="float:right;">
+            <form th:action='@{/delete/{param}(param=${detail.bno})}' method="post">
+                <button type="submit">삭제</button>
+            </form>
+            <form th:action='@{/update/{param}(param=${detail.bno})}' method="post">
+                <button type="submit">수정</button>
+            </form>
+            <form th:action='@{/list}' method="post">
+                <button type="submit">목록</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
